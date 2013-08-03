@@ -1,9 +1,12 @@
 {
   "name": "domutil",
   "main": "index.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "DOM utility functions",
-  "keywords": ["dom", "utility"],
+  "keywords": [
+    "dom",
+    "utility"
+  ],
   "author": "Jason Frame <jason@onehackoranother.com> (jasonframe.co.uk)",
   "license": "MIT",
   "repository": {
