@@ -3,7 +3,8 @@ var rclass = /[\t\r\n]/g;
 var core_rnotwhite = /\S+/g;
 
 var DataStore         = {},
-    kDataStoreNextIx  = 1;
+    kDataStoreNextIx  = 1,
+    kDataKey          = 'du-data-key';
 
 function generateElementKey() {
   return kDataStoreNextIx++;
@@ -11,10 +12,10 @@ function generateElementKey() {
 
 module.exports = {
   data: function(el, key, val) {
-    var elementKey = el.getAttribute('du-data-key');
+    var elementKey = el.getAttribute(kDataKey);
     if (!elementKey) {
       elementKey = generateElementKey();
-      el.setAttribute('du-data-key', elementKey);
+      el.setAttribute(kDataKey, elementKey);
     }
 
     var elementData = DataStore[elementKey];
