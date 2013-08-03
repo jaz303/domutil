@@ -1,0 +1,13 @@
+{
+  "name": "domutil",
+  "main": "index.js",
+  "version": "0.0.1",
+  "description": "DOM utility functions",
+  "keywords": ["dom", "utility"],
+  "author": "Jason Frame <jason@onehackoranother.com> (jasonframe.co.uk)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaz303/domutil.git"
+  }
+}
