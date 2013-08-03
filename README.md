@@ -1,11 +1,23 @@
 # domutil
 
+Simple standalone DOM utility functions, mostly ripped from jQuery.
+
+## Installation
+
+Browserify recommended.
+
+	$ npm install domutil
+
+In the codes:
+
+	var du = require('domutil');
+
 ## API
 
-#### `data(el, key [, val])`
+#### `du.data(el, key [, val])`
 
-#### `hasClass(el, className)`
+#### `du.hasClass(el, className)`
 
-#### `addClass(el, className)`
+#### `du.addClass(el, className)`
 
-#### `removeClass(el, className)`
+#### `du.removeClass(el, className)`
