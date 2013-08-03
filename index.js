@@ -6,11 +6,24 @@ var DataStore         = {},
     kDataStoreNextIx  = 1,
     kDataKey          = 'du-data-key';
 
+var __window = typeof window === 'undefined'
+                ? null
+                : window;
+
+var __document = typeof document === 'undefined'
+                  ? null
+                  : document;
+
 function generateElementKey() {
   return kDataStoreNextIx++;
 }
 
 module.exports = {
+  init: function(window, document) {
+    __window = window;
+    __document = document;
+  },
+
   data: function(el, key, val) {
     var elementKey = el.getAttribute(kDataKey);
     if (!elementKey) {
@@ -84,8 +97,8 @@ module.exports = {
 
   viewportSize: function() {
     return {
-      width: document.documentElement.clientWidth,
-      height: document.documentElement.clientHeight
+      width: __document.documentElement.clientWidth,
+      height: __document.documentElement.clientHeight
     };
   }
 };
