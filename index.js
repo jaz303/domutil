@@ -11,10 +11,10 @@ function generateElementKey() {
 
 module.exports = {
   data: function(el, key, val) {
-    var elementKey = el.getAttribute('cu-data-key');
+    var elementKey = el.getAttribute('du-data-key');
     if (!elementKey) {
       elementKey = generateElementKey();
-      el.setAttribute('cu-data-key', elementKey);
+      el.setAttribute('du-data-key', elementKey);
     }
 
     var elementData = DataStore[elementKey];
