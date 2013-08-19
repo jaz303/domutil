@@ -100,5 +100,10 @@ module.exports = {
       width: __document.documentElement.clientWidth,
       height: __document.documentElement.clientHeight
     };
+  },
+
+  stop: function(evt) {
+    evt.preventDefault();
+    evt.stopPropagation();
   }
 };

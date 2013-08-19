@@ -35,3 +35,10 @@ In the codes:
 #### `du.removeClass(el, className)`
 
 #### `du.viewportSize()`
+
+#### `du.stop(evt)`
+
+Shortcut for:
+
+	evt.preventDefault();
+	evt.stopPropagation();
