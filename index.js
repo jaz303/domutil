@@ -105,5 +105,15 @@ module.exports = {
   stop: function(evt) {
     evt.preventDefault();
     evt.stopPropagation();
+  },
+
+  setPosition: function(el, x, y) {
+    el.style.left = x + 'px';
+    el.style.top = y + 'px';
+  },
+
+  setSize: function(width, height) {
+    el.style.width = width + 'px';
+    el.style.height = height + 'px';
   }
 };
