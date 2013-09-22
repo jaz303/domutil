@@ -115,5 +115,9 @@ module.exports = {
   setSize: function(width, height) {
     el.style.width = width + 'px';
     el.style.height = height + 'px';
+  },
+
+  isElement: function(el) {
+    return el && el.nodeType === 1;
   }
 };
