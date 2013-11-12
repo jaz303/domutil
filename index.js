@@ -94,7 +94,7 @@ module.exports = {
     }
   },
 
-  toggleClass: function(ele, className) {
+  toggleClass: function(ele, value) {
     var classes = (value || "").match(core_rnotwhite) || [],
         cur = ele.className ? (" " + ele.className + " ").replace(rclass, " ") : " ";
 
