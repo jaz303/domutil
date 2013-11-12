@@ -34,6 +34,8 @@ In the codes:
 
 #### `du.removeClass(el, className)`
 
+#### `du.toggleClass(el, className)`
+
 #### `du.viewportSize()`
 
 #### `du.stop(evt)`

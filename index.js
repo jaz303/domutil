@@ -91,7 +91,26 @@ module.exports = {
         }
         ele.className = value ? cur.trim() : "";
       }
+    }
+  },
 
+  toggleClass: function(ele, className) {
+    var classes = (value || "").match(core_rnotwhite) || [],
+        cur = ele.className ? (" " + ele.className + " ").replace(rclass, " ") : " ";
+
+    if (cur) {
+      var j = 0, clazz;
+      while ((clazz = classes[j++])) {
+        var removeCount = 0;
+        while (cur.indexOf(" " + clazz + " ") >= 0) {
+          cur = cur.replace(" " + clazz + " ", " ");
+          removeCount++;
+        }
+        if (removeCount === 0) {
+          cur += clazz + " ";
+        }
+        ele.className = cur.trim();
+      }
     }
   },
 
