@@ -22,7 +22,7 @@ In the codes:
 
 #### `du.toggleClass(el, className)`
 
-#### `du.viewportSize()`
+#### `du.viewportSize(document)`
 
 #### `du.stop(evt)`
 
