@@ -14,7 +14,6 @@ function hasClass(ele, className) {
 }
 
 function addClass(ele, value) {
-  console.log(arguments);
     var classes = (value || "").match(core_rnotwhite) || [],
             cur = ele.className ? (" " + ele.className + " ").replace(rclass, " ") : " ";
 
