@@ -7,7 +7,7 @@ var nativeMatch = proto.webkitMatchesSelector
 if (nativeMatch) {
 	
 	exports.matchesSelector = function(selector, el) {
-		return matchesSelector.call(el, selector);
+		return nativeMatch.call(el, selector);
 	}
 
 } else {
