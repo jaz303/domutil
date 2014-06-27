@@ -12,5 +12,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/jaz303/domutil.git"
+  },
+  "devDependencies": {
+    "uglify-js": "~2.4.14"
   }
 }
