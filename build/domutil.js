@@ -148,14 +148,16 @@ if (typeof window.addEventListener === 'function') {
 
 function delegate(el, evtType, selector, cb, useCapture) {
 	return bind(el, evtType, function(evt) {
-		var currTarget = evt.target || evt.srcElement;
+		var currTarget = evt.target;
 		while (currTarget && currTarget !== el) {
 			if (matchesSelector(selector, currTarget)) {
 				evt.delegateTarget = currTarget;
 				cb.call(el, evt);
+				break;
 			}
+			currTarget = currTarget.parentNode;
 		}
-	});
+	}, useCapture);
 }
 
 function bind_c(el, evtType, cb, useCapture) {
@@ -191,7 +193,7 @@ exports.bind = bind;
 exports.unbind = unbind;
 exports.delegate = delegate;
 exports.bind_c = bind_c;
-exports.delegate = delegate_c;
+exports.delegate_c = delegate_c;
 exports.stop = stop;
 },{"./matches_selector":4}],3:[function(_dereq_,module,exports){
 exports.setPosition = function(el, x, y) {
@@ -213,7 +215,7 @@ var nativeMatch = proto.webkitMatchesSelector
 if (nativeMatch) {
 	
 	exports.matchesSelector = function(selector, el) {
-		return matchesSelector.call(el, selector);
+		return nativeMatch.call(el, selector);
 	}
 
 } else {
