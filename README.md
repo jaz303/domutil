@@ -61,6 +61,8 @@ Shortcut for:
 
 #### `du.isElement(thing)`
 
+#### `du.replace(oldEl, newEl)`
+
 ### Viewport
 
 #### `du.viewportSize()`
