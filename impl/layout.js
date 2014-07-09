@@ -3,7 +3,7 @@ exports.setPosition = function(el, x, y) {
     el.style.top = y + 'px';
 }
 
-exports.setSize = function(width, height) {
+exports.setSize = function(el, width, height) {
     el.style.width = width + 'px';
     el.style.height = height + 'px';
 }
