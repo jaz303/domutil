@@ -1,101 +1,101 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 if (typeof window.DOMTokenList === 'undefined') {
 
-	// Constants from jQuery
-	var rclass = /[\t\r\n]/g;
-	var core_rnotwhite = /\S+/g;
+    // Constants from jQuery
+    var rclass = /[\t\r\n]/g;
+    var core_rnotwhite = /\S+/g;
 
-	// from jQuery
-	exports.hasClass = function(ele, className) {
-	    className = " " + className + " ";
-	    return (" " + ele.className + " ").replace(rclass, " ").indexOf(className) >= 0;
-	}
+    // from jQuery
+    exports.hasClass = function(ele, className) {
+        className = " " + className + " ";
+        return (" " + ele.className + " ").replace(rclass, " ").indexOf(className) >= 0;
+    }
 
-	exports.addClass = function(ele, value) {
-	    var classes = (value || "").match(core_rnotwhite) || [],
-	            cur = ele.className ? (" " + ele.className + " ").replace(rclass, " ") : " ";
+    exports.addClass = function(ele, value) {
+        var classes = (value || "").match(core_rnotwhite) || [],
+                cur = ele.className ? (" " + ele.className + " ").replace(rclass, " ") : " ";
 
-	    if (cur) {
-	        var j = 0, clazz;
-	        while ((clazz = classes[j++])) {
-	            if (cur.indexOf(" " + clazz + " ") < 0) {
-	                cur += clazz + " ";
-	            }
-	        }
-	        ele.className = cur.trim();
-	    }
-	}
+        if (cur) {
+            var j = 0, clazz;
+            while ((clazz = classes[j++])) {
+                if (cur.indexOf(" " + clazz + " ") < 0) {
+                    cur += clazz + " ";
+                }
+            }
+            ele.className = cur.trim();
+        }
+    }
 
-	exports.removeClass = function(ele, value) {
-	    var classes = (value || "").match(core_rnotwhite) || [],
-	            cur = ele.className ? (" " + ele.className + " ").replace(rclass, " ") : " ";
+    exports.removeClass = function(ele, value) {
+        var classes = (value || "").match(core_rnotwhite) || [],
+                cur = ele.className ? (" " + ele.className + " ").replace(rclass, " ") : " ";
 
-	    if (cur) {
-	        var j = 0, clazz;
-	        while ((clazz = classes[j++])) {
-	            while (cur.indexOf(" " + clazz + " ") >= 0) {
-	                cur = cur.replace(" " + clazz + " ", " ");
-	            }
-	            ele.className = value ? cur.trim() : "";
-	        }
-	    }
-	}
+        if (cur) {
+            var j = 0, clazz;
+            while ((clazz = classes[j++])) {
+                while (cur.indexOf(" " + clazz + " ") >= 0) {
+                    cur = cur.replace(" " + clazz + " ", " ");
+                }
+                ele.className = value ? cur.trim() : "";
+            }
+        }
+    }
 
-	exports.toggleClass = function(ele, value) {
-	    var classes = (value || "").match(core_rnotwhite) || [],
-	            cur = ele.className ? (" " + ele.className + " ").replace(rclass, " ") : " ";
+    exports.toggleClass = function(ele, value) {
+        var classes = (value || "").match(core_rnotwhite) || [],
+                cur = ele.className ? (" " + ele.className + " ").replace(rclass, " ") : " ";
 
-	    if (cur) {
-	        var j = 0, clazz;
-	        while ((clazz = classes[j++])) {
-	            var removeCount = 0;
-	            while (cur.indexOf(" " + clazz + " ") >= 0) {
-	                cur = cur.replace(" " + clazz + " ", " ");
-	                removeCount++;
-	            }
-	            if (removeCount === 0) {
-	                cur += clazz + " ";
-	            }
-	            ele.className = cur.trim();
-	        }
-	    }
-	}
+        if (cur) {
+            var j = 0, clazz;
+            while ((clazz = classes[j++])) {
+                var removeCount = 0;
+                while (cur.indexOf(" " + clazz + " ") >= 0) {
+                    cur = cur.replace(" " + clazz + " ", " ");
+                    removeCount++;
+                }
+                if (removeCount === 0) {
+                    cur += clazz + " ";
+                }
+                ele.className = cur.trim();
+            }
+        }
+    }
 
 } else {
 
-	exports.hasClass = function(el, className) {
-	    return el.classList.contains(className);
-	}
+    exports.hasClass = function(el, className) {
+        return el.classList.contains(className);
+    }
 
-	exports.addClass = function(el, classes) {
-	    if (classes.indexOf(' ') >= 0) {
-	        classes.split(/\s+/).forEach(function(c) {
-	            el.classList.add(c);
-	        });
-	    } else {
-	        el.classList.add(classes);
-	    }
-	}
+    exports.addClass = function(el, classes) {
+        if (classes.indexOf(' ') >= 0) {
+            classes.split(/\s+/).forEach(function(c) {
+                el.classList.add(c);
+            });
+        } else {
+            el.classList.add(classes);
+        }
+    }
 
-	exports.removeClass = function(el, classes) {
-	    if (classes.indexOf(' ') >= 0) {
-	        classes.split(/\s+/).forEach(function(c) {
-	            el.classList.remove(c);
-	        });
-	    } else {
-	        el.classList.remove(classes);
-	    }
-	}
+    exports.removeClass = function(el, classes) {
+        if (classes.indexOf(' ') >= 0) {
+            classes.split(/\s+/).forEach(function(c) {
+                el.classList.remove(c);
+            });
+        } else {
+            el.classList.remove(classes);
+        }
+    }
 
-	exports.toggleClass = function(el, classes) {
-	    if (classes.indexOf(' ') >= 0) {
-	        classes.split(/\s+/).forEach(function(c) {
-	            el.classList.toggle(c);
-	        });
-	    } else {
-	        el.classList.toggle(classes);
-	    }
-	}
+    exports.toggleClass = function(el, classes) {
+        if (classes.indexOf(' ') >= 0) {
+            classes.split(/\s+/).forEach(function(c) {
+                el.classList.toggle(c);
+            });
+        } else {
+            el.classList.toggle(classes);
+        }
+    }
 
 }
 
@@ -106,87 +106,87 @@ var bind = null, unbind = null;
 
 if (typeof window.addEventListener === 'function') {
 
-	bind = function(el, evtType, cb, useCapture) {
-		el.addEventListener(evtType, cb, useCapture || false);
-		return cb;
-	}
+    bind = function(el, evtType, cb, useCapture) {
+        el.addEventListener(evtType, cb, useCapture || false);
+        return cb;
+    }
 
-	unbind = function(el, evtType, cb, useCapture) {
-		el.removeEventListener(evtType, cb, useCapture || false);
-		return cb;
-	}
+    unbind = function(el, evtType, cb, useCapture) {
+        el.removeEventListener(evtType, cb, useCapture || false);
+        return cb;
+    }
 
 } else if (typeof window.attachEvent === 'function') {
 
-	bind = function(el, evtType, cb, useCapture) {
-		
-		function handler(evt) {
-			evt = evt || window.event;
-			
-			if (!evt.preventDefault) {
-				evt.preventDefault = function() { evt.returnValue = false; }
-			}
-			
-			if (!evt.stopPropagation) {
-				evt.stopPropagation = function() { evt.cancelBubble = true; }
-			}
+    bind = function(el, evtType, cb, useCapture) {
+        
+        function handler(evt) {
+            evt = evt || window.event;
+            
+            if (!evt.preventDefault) {
+                evt.preventDefault = function() { evt.returnValue = false; }
+            }
+            
+            if (!evt.stopPropagation) {
+                evt.stopPropagation = function() { evt.cancelBubble = true; }
+            }
 
-			cb.call(el, evt);
-		}
-		
-		el.attachEvent('on' + evtType, handler);
-		return handler;
-	
-	}
+            cb.call(el, evt);
+        }
+        
+        el.attachEvent('on' + evtType, handler);
+        return handler;
+    
+    }
 
-	unbind = function(el, evtType, cb, useCapture) {
-		el.detachEvent('on' + evtType, cb);
-		return cb;
-	}
+    unbind = function(el, evtType, cb, useCapture) {
+        el.detachEvent('on' + evtType, cb);
+        return cb;
+    }
 
 }
 
 function delegate(el, evtType, selector, cb, useCapture) {
-	return bind(el, evtType, function(evt) {
-		var currTarget = evt.target;
-		while (currTarget && currTarget !== el) {
-			if (matchesSelector(selector, currTarget)) {
-				evt.delegateTarget = currTarget;
-				cb.call(el, evt);
-				break;
-			}
-			currTarget = currTarget.parentNode;
-		}
-	}, useCapture);
+    return bind(el, evtType, function(evt) {
+        var currTarget = evt.target;
+        while (currTarget && currTarget !== el) {
+            if (matchesSelector(selector, currTarget)) {
+                evt.delegateTarget = currTarget;
+                cb.call(el, evt);
+                break;
+            }
+            currTarget = currTarget.parentNode;
+        }
+    }, useCapture);
 }
 
 function bind_c(el, evtType, cb, useCapture) {
-	cb = bind(el, evtType, cb, useCapture);
+    cb = bind(el, evtType, cb, useCapture);
 
-	var removed = false;
-	return function() {
-		if (removed) return;
-		removed = true;
-		unbind(el, evtType, cb, useCapture);
-		el = cb = null;
-	}
+    var removed = false;
+    return function() {
+        if (removed) return;
+        removed = true;
+        unbind(el, evtType, cb, useCapture);
+        el = cb = null;
+    }
 }
 
 function delegate_c(el, evtType, selector, cb, useCapture) {
-	cb = delegate(el, evtType, selector, cb, useCapture);
+    cb = delegate(el, evtType, selector, cb, useCapture);
 
-	var removed = false;
-	return function() {
-		if (removed) return;
-		removed = true;
-		unbind(el, evtType, cb, useCapture);
-		el = cb = null;
-	}
+    var removed = false;
+    return function() {
+        if (removed) return;
+        removed = true;
+        unbind(el, evtType, cb, useCapture);
+        el = cb = null;
+    }
 }
 
 function stop(evt) {
-	evt.preventDefault();
-	evt.stopPropagation();
+    evt.preventDefault();
+    evt.stopPropagation();
 }
 
 exports.bind = bind;
@@ -197,7 +197,7 @@ exports.delegate_c = delegate_c;
 exports.stop = stop;
 },{"./matches_selector":4}],3:[function(require,module,exports){
 exports.setRect = function(el, x, y, width, height) {
-	el.style.left = x + 'px';
+    el.style.left = x + 'px';
     el.style.top = y + 'px';
     el.style.width = width + 'px';
     el.style.height = height + 'px';
@@ -215,34 +215,34 @@ exports.setSize = function(el, width, height) {
 },{}],4:[function(require,module,exports){
 var proto = window.Element.prototype;
 var nativeMatch = proto.webkitMatchesSelector
-					|| proto.mozMatchesSelector
-					|| proto.msMatchesSelector
-					|| proto.oMatchesSelector;
+                    || proto.mozMatchesSelector
+                    || proto.msMatchesSelector
+                    || proto.oMatchesSelector;
 
 if (nativeMatch) {
-	
-	exports.matchesSelector = function(selector, el) {
-		return nativeMatch.call(el, selector);
-	}
+    
+    exports.matchesSelector = function(selector, el) {
+        return nativeMatch.call(el, selector);
+    }
 
 } else {
 
-	console.warn("Warning: using slow matchesSelector()");
-	
-	var indexOf = Array.prototype.indexOf;
-	exports.matchesSelector = function(selector, el) {
-		return indexOf.call(document.querySelectorAll(selector), el) >= 0;
-	}
+    console.warn("Warning: using slow matchesSelector()");
+    
+    var indexOf = Array.prototype.indexOf;
+    exports.matchesSelector = function(selector, el) {
+        return indexOf.call(document.querySelectorAll(selector), el) >= 0;
+    }
 
 }
 
 },{}],5:[function(require,module,exports){
 exports.isElement = function(el) {
-	return el && el.nodeType === 1;
+    return el && el.nodeType === 1;
 }
 
 exports.replace = function(oldEl, newEl) {
-	oldEl.parentNode.replaceChild(newEl, oldEl);
+    oldEl.parentNode.replaceChild(newEl, oldEl);
 }
 },{}],6:[function(require,module,exports){
 if ('textContent' in document.createElement('span')) {
@@ -269,10 +269,10 @@ if ('textContent' in document.createElement('span')) {
 },{}],7:[function(require,module,exports){
 // http://stackoverflow.com/questions/1248081/get-the-browser-viewport-dimensions-with-javascript
 exports.viewportSize = function() {
-	return {
-	    width: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
-	    height: Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
-	};
+    return {
+        width: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+        height: Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+    };
 }
 },{}],8:[function(require,module,exports){
 var du = module.exports = {};
@@ -1585,54 +1585,54 @@ var test = require('tape');
 
 test("hasClass()", function(assert) {
 
-	var el = document.createElement('div');
-	el.className = 'foo baz';
+    var el = document.createElement('div');
+    el.className = 'foo baz';
 
-	assert.ok(du.hasClass(el, 'foo'));
-	assert.notOk(du.hasClass(el, 'bar'));
-	assert.ok(du.hasClass(el, 'baz'));
-	assert.end();
+    assert.ok(du.hasClass(el, 'foo'));
+    assert.notOk(du.hasClass(el, 'bar'));
+    assert.ok(du.hasClass(el, 'baz'));
+    assert.end();
 
 });
 
 test("addClass()", function(assert) {
 
-	var el = document.createElement('div');
+    var el = document.createElement('div');
 
-	du.addClass(el, 'foo bar baz');
+    du.addClass(el, 'foo bar baz');
 
-	assert.ok(du.hasClass(el, 'foo'));
-	assert.ok(du.hasClass(el, 'bar'));
-	assert.ok(du.hasClass(el, 'baz'));
-	assert.end();
+    assert.ok(du.hasClass(el, 'foo'));
+    assert.ok(du.hasClass(el, 'bar'));
+    assert.ok(du.hasClass(el, 'baz'));
+    assert.end();
 
 });
 
 test("removeClass()", function(assert) {
 
-	var el = document.createElement('div');
-	el.className = 'foo bar baz';
+    var el = document.createElement('div');
+    el.className = 'foo bar baz';
 
-	du.removeClass(el, 'foo bar baz');
+    du.removeClass(el, 'foo bar baz');
 
-	assert.notOk(du.hasClass(el, 'foo'));
-	assert.notOk(du.hasClass(el, 'bar'));
-	assert.notOk(du.hasClass(el, 'baz'));
-	assert.end();
+    assert.notOk(du.hasClass(el, 'foo'));
+    assert.notOk(du.hasClass(el, 'bar'));
+    assert.notOk(du.hasClass(el, 'baz'));
+    assert.end();
 
 });
 
 test("toggleClass()", function(assert) {
 
-	var el = document.createElement('div');
-	el.className = 'foo baz';
+    var el = document.createElement('div');
+    el.className = 'foo baz';
 
-	du.toggleClass(el, 'foo bar baz');
+    du.toggleClass(el, 'foo bar baz');
 
-	assert.notOk(du.hasClass(el, 'foo'));
-	assert.ok(du.hasClass(el, 'bar'));
-	assert.notOk(du.hasClass(el, 'baz'));
-	assert.end();
+    assert.notOk(du.hasClass(el, 'foo'));
+    assert.ok(du.hasClass(el, 'bar'));
+    assert.notOk(du.hasClass(el, 'baz'));
+    assert.end();
 
 });
 },{"../":8,"tape":9}],22:[function(require,module,exports){
@@ -1640,175 +1640,175 @@ var du = require('../');
 var test = require('tape');
 
 function click(el) {
-	var evt = new MouseEvent('click', {
-		bubbles: true,
-	    cancelable: true,
-	    view: window
-	});
-	el.dispatchEvent(evt);
-	return evt;
+    var evt = new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+        view: window
+    });
+    el.dispatchEvent(evt);
+    return evt;
 }
 
 test("bind()", function(assert) {
 
-	var el = document.querySelector('#bind a');
-	var x = 0;
+    var el = document.querySelector('#bind a');
+    var x = 0;
 
-	du.bind(el, 'click', function(evt) {
-		x++;
-	});
+    du.bind(el, 'click', function(evt) {
+        x++;
+    });
 
-	click(el);
+    click(el);
 
-	assert.ok(x === 1);
-	assert.end();
+    assert.ok(x === 1);
+    assert.end();
 
 });
 
 test("unbind()", function(assert) {
 
-	var el = document.querySelector('#unbind a');
-	var x = 0;
+    var el = document.querySelector('#unbind a');
+    var x = 0;
 
-	var fn = du.bind(el, 'click', function(evt) {
-		x++;
-	});
+    var fn = du.bind(el, 'click', function(evt) {
+        x++;
+    });
 
-	du.unbind(el, 'click', fn);
+    du.unbind(el, 'click', fn);
 
-	click(el);
+    click(el);
 
-	assert.ok(x === 0);
-	assert.end();
+    assert.ok(x === 0);
+    assert.end();
 
 });
 
 test("bind_c() - bind", function(assert) {
 
-	var el = document.querySelector('#bind_c_1 a');
-	var x = 0;
+    var el = document.querySelector('#bind_c_1 a');
+    var x = 0;
 
-	du.bind_c(el, 'click', function(evt) {
-		x++;
-	});
+    du.bind_c(el, 'click', function(evt) {
+        x++;
+    });
 
-	click(el);
+    click(el);
 
-	assert.ok(x === 1);
-	assert.end();
+    assert.ok(x === 1);
+    assert.end();
 
 });
 
 test("bind_c() - cancellation", function(assert) {
 
-	var el = document.querySelector('#bind_c_2 a');
-	var x = 0;
+    var el = document.querySelector('#bind_c_2 a');
+    var x = 0;
 
-	var cancel = du.bind_c(el, 'click', function(evt) {
-		x++;
-	});
+    var cancel = du.bind_c(el, 'click', function(evt) {
+        x++;
+    });
 
-	cancel();
+    cancel();
 
-	click(el);
+    click(el);
 
-	assert.ok(x === 0);
-	assert.end();
+    assert.ok(x === 0);
+    assert.end();
 
 });
 
 test("delegate() - bind", function(assert) {
 
-	var el = document.querySelector('#delegate_1');
-	
-	var x = 0;
-	du.delegate(el, 'click', 'a', function(evt) {
-		assert.ok(this === el, "this in delegate == original element");
-		x += parseInt(evt.delegateTarget.getAttribute('data-val'));
-	});
+    var el = document.querySelector('#delegate_1');
+    
+    var x = 0;
+    du.delegate(el, 'click', 'a', function(evt) {
+        assert.ok(this === el, "this in delegate == original element");
+        x += parseInt(evt.delegateTarget.getAttribute('data-val'));
+    });
 
-	click(document.querySelector('#delegate_1 div > :nth-child(1) span'));
-	click(document.querySelector('#delegate_1 div > :nth-child(2) span'));
-	click(document.querySelector('#delegate_1 div > :nth-child(3) span'));
+    click(document.querySelector('#delegate_1 div > :nth-child(1) span'));
+    click(document.querySelector('#delegate_1 div > :nth-child(2) span'));
+    click(document.querySelector('#delegate_1 div > :nth-child(3) span'));
 
-	assert.ok(x === 5, "x should == 5");
-	assert.end();
+    assert.ok(x === 5, "x should == 5");
+    assert.end();
 
 });
 
 test("delegate() - unbind", function(assert) {
 
-	var el = document.querySelector('#delegate_2');
-	
-	var x = 0;
-	var fn = du.delegate(el, 'click', 'a', function(evt) {
-		x += parseInt(evt.delegateTarget.getAttribute('data-val'));
-	});
+    var el = document.querySelector('#delegate_2');
+    
+    var x = 0;
+    var fn = du.delegate(el, 'click', 'a', function(evt) {
+        x += parseInt(evt.delegateTarget.getAttribute('data-val'));
+    });
 
-	du.unbind(el, 'click', fn);
+    du.unbind(el, 'click', fn);
 
-	click(document.querySelector('#delegate_2 div > :nth-child(1) span'));
-	click(document.querySelector('#delegate_2 div > :nth-child(2) span'));
-	click(document.querySelector('#delegate_2 div > :nth-child(3) span'));
+    click(document.querySelector('#delegate_2 div > :nth-child(1) span'));
+    click(document.querySelector('#delegate_2 div > :nth-child(2) span'));
+    click(document.querySelector('#delegate_2 div > :nth-child(3) span'));
 
-	assert.ok(x === 0, "x should == 0");
-	assert.end();
+    assert.ok(x === 0, "x should == 0");
+    assert.end();
 
 });
 
 test("delegate_c() - bind", function(assert) {
 
-	var el = document.querySelector('#delegate_c_1');
-	
-	var x = 0;
-	du.delegate_c(el, 'click', 'a', function(evt) {
-		assert.ok(this === el, "this in delegate == original element");
-		x += parseInt(evt.delegateTarget.getAttribute('data-val'));
-	});
+    var el = document.querySelector('#delegate_c_1');
+    
+    var x = 0;
+    du.delegate_c(el, 'click', 'a', function(evt) {
+        assert.ok(this === el, "this in delegate == original element");
+        x += parseInt(evt.delegateTarget.getAttribute('data-val'));
+    });
 
-	click(document.querySelector('#delegate_c_1 div > :nth-child(1) span'));
-	click(document.querySelector('#delegate_c_1 div > :nth-child(2) span'));
-	click(document.querySelector('#delegate_c_1 div > :nth-child(3) span'));
+    click(document.querySelector('#delegate_c_1 div > :nth-child(1) span'));
+    click(document.querySelector('#delegate_c_1 div > :nth-child(2) span'));
+    click(document.querySelector('#delegate_c_1 div > :nth-child(3) span'));
 
-	assert.ok(x === 5, "x should == 5");
-	assert.end();
+    assert.ok(x === 5, "x should == 5");
+    assert.end();
 
 });
 
 test("delegate_c() - unbind", function(assert) {
 
-	var el = document.querySelector('#delegate_c_2');
-	
-	var x = 0;
-	var fn = du.delegate_c(el, 'click', 'a', function(evt) {
-		x += parseInt(evt.delegateTarget.getAttribute('data-val'));
-	});
+    var el = document.querySelector('#delegate_c_2');
+    
+    var x = 0;
+    var fn = du.delegate_c(el, 'click', 'a', function(evt) {
+        x += parseInt(evt.delegateTarget.getAttribute('data-val'));
+    });
 
-	fn();
+    fn();
 
-	click(document.querySelector('#delegate_c_2 div > :nth-child(1) span'));
-	click(document.querySelector('#delegate_c_2 div > :nth-child(2) span'));
-	click(document.querySelector('#delegate_c_2 div > :nth-child(3) span'));
+    click(document.querySelector('#delegate_c_2 div > :nth-child(1) span'));
+    click(document.querySelector('#delegate_c_2 div > :nth-child(2) span'));
+    click(document.querySelector('#delegate_c_2 div > :nth-child(3) span'));
 
-	assert.ok(x === 0, "x should == 0");
-	assert.end();
+    assert.ok(x === 0, "x should == 0");
+    assert.end();
 
 });
 
 test("stop()", function(assert) {
 
-	var el = document.querySelector('#stop');
-	var outer = el.querySelector('a');
-	var inner = el.querySelector('span');
+    var el = document.querySelector('#stop');
+    var outer = el.querySelector('a');
+    var inner = el.querySelector('span');
 
-	var x = 0;
-	du.bind(outer, 'click', function(evt) { x++; });
-	du.bind(inner, 'click', function(evt) { du.stop(evt); });
+    var x = 0;
+    du.bind(outer, 'click', function(evt) { x++; });
+    du.bind(inner, 'click', function(evt) { du.stop(evt); });
 
-	var evt = click(inner);
-	assert.ok(evt.defaultPrevented);
-	assert.ok(x === 0);
-	assert.end();
+    var evt = click(inner);
+    assert.ok(evt.defaultPrevented);
+    assert.ok(x === 0);
+    assert.end();
 
 });
 },{"../":8,"tape":9}],23:[function(require,module,exports){
@@ -1824,11 +1824,11 @@ var test = require('tape');
 
 test("matchesSelector()", function(assert) {
 
-	var el = document.getElementById('title');
+    var el = document.getElementById('title');
 
-	assert.ok(du.matchesSelector('div h1 span', el));
-	assert.notOk(du.matchesSelector('table', el));
-	assert.end();
+    assert.ok(du.matchesSelector('div h1 span', el));
+    assert.notOk(du.matchesSelector('table', el));
+    assert.end();
 
 });
 },{"../":8,"tape":9}],25:[function(require,module,exports){
@@ -1837,9 +1837,9 @@ var test = require('tape');
 
 test('isElement()', function(assert) {
 
-	assert.ok(du.isElement(document.body));
-	assert.notOk(du.isElement({}));
-	assert.end();
+    assert.ok(du.isElement(document.body));
+    assert.notOk(du.isElement({}));
+    assert.end();
 
 });
 },{"../":8,"tape":9}],26:[function(require,module,exports){
@@ -1848,21 +1848,21 @@ var test = require('tape');
 
 test('getText()', function(assert) {
 
-	var el = document.querySelector('#text_get');
+    var el = document.querySelector('#text_get');
 
-	assert.equal(du.getText(el), "text is cool!");
-	assert.end();
+    assert.equal(du.getText(el), "text is cool!");
+    assert.end();
 
 });
 
 test('setText()', function(assert) {
 
-	var el = document.querySelector('#text_set');
+    var el = document.querySelector('#text_set');
 
-	du.setText(el, "wam bam");
+    du.setText(el, "wam bam");
 
-	assert.equal(du.getText(el), "wam bam");
-	assert.end();
+    assert.equal(du.getText(el), "wam bam");
+    assert.end();
 
 });
 },{"../":8,"tape":9}],27:[function(require,module,exports){
@@ -2982,123 +2982,123 @@ function assert (test, message) {
 var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
 ;(function (exports) {
-	'use strict';
+    'use strict';
 
   var Arr = (typeof Uint8Array !== 'undefined')
     ? Uint8Array
     : Array
 
-	var ZERO   = '0'.charCodeAt(0)
-	var PLUS   = '+'.charCodeAt(0)
-	var SLASH  = '/'.charCodeAt(0)
-	var NUMBER = '0'.charCodeAt(0)
-	var LOWER  = 'a'.charCodeAt(0)
-	var UPPER  = 'A'.charCodeAt(0)
+    var ZERO   = '0'.charCodeAt(0)
+    var PLUS   = '+'.charCodeAt(0)
+    var SLASH  = '/'.charCodeAt(0)
+    var NUMBER = '0'.charCodeAt(0)
+    var LOWER  = 'a'.charCodeAt(0)
+    var UPPER  = 'A'.charCodeAt(0)
 
-	function decode (elt) {
-		var code = elt.charCodeAt(0)
-		if (code === PLUS)
-			return 62 // '+'
-		if (code === SLASH)
-			return 63 // '/'
-		if (code < NUMBER)
-			return -1 //no match
-		if (code < NUMBER + 10)
-			return code - NUMBER + 26 + 26
-		if (code < UPPER + 26)
-			return code - UPPER
-		if (code < LOWER + 26)
-			return code - LOWER + 26
-	}
+    function decode (elt) {
+        var code = elt.charCodeAt(0)
+        if (code === PLUS)
+            return 62 // '+'
+        if (code === SLASH)
+            return 63 // '/'
+        if (code < NUMBER)
+            return -1 //no match
+        if (code < NUMBER + 10)
+            return code - NUMBER + 26 + 26
+        if (code < UPPER + 26)
+            return code - UPPER
+        if (code < LOWER + 26)
+            return code - LOWER + 26
+    }
 
-	function b64ToByteArray (b64) {
-		var i, j, l, tmp, placeHolders, arr
+    function b64ToByteArray (b64) {
+        var i, j, l, tmp, placeHolders, arr
 
-		if (b64.length % 4 > 0) {
-			throw new Error('Invalid string. Length must be a multiple of 4')
-		}
+        if (b64.length % 4 > 0) {
+            throw new Error('Invalid string. Length must be a multiple of 4')
+        }
 
-		// the number of equal signs (place holders)
-		// if there are two placeholders, than the two characters before it
-		// represent one byte
-		// if there is only one, then the three characters before it represent 2 bytes
-		// this is just a cheap hack to not do indexOf twice
-		var len = b64.length
-		placeHolders = '=' === b64.charAt(len - 2) ? 2 : '=' === b64.charAt(len - 1) ? 1 : 0
+        // the number of equal signs (place holders)
+        // if there are two placeholders, than the two characters before it
+        // represent one byte
+        // if there is only one, then the three characters before it represent 2 bytes
+        // this is just a cheap hack to not do indexOf twice
+        var len = b64.length
+        placeHolders = '=' === b64.charAt(len - 2) ? 2 : '=' === b64.charAt(len - 1) ? 1 : 0
 
-		// base64 is 4/3 + up to two characters of the original data
-		arr = new Arr(b64.length * 3 / 4 - placeHolders)
+        // base64 is 4/3 + up to two characters of the original data
+        arr = new Arr(b64.length * 3 / 4 - placeHolders)
 
-		// if there are placeholders, only get up to the last complete 4 chars
-		l = placeHolders > 0 ? b64.length - 4 : b64.length
+        // if there are placeholders, only get up to the last complete 4 chars
+        l = placeHolders > 0 ? b64.length - 4 : b64.length
 
-		var L = 0
+        var L = 0
 
-		function push (v) {
-			arr[L++] = v
-		}
+        function push (v) {
+            arr[L++] = v
+        }
 
-		for (i = 0, j = 0; i < l; i += 4, j += 3) {
-			tmp = (decode(b64.charAt(i)) << 18) | (decode(b64.charAt(i + 1)) << 12) | (decode(b64.charAt(i + 2)) << 6) | decode(b64.charAt(i + 3))
-			push((tmp & 0xFF0000) >> 16)
-			push((tmp & 0xFF00) >> 8)
-			push(tmp & 0xFF)
-		}
+        for (i = 0, j = 0; i < l; i += 4, j += 3) {
+            tmp = (decode(b64.charAt(i)) << 18) | (decode(b64.charAt(i + 1)) << 12) | (decode(b64.charAt(i + 2)) << 6) | decode(b64.charAt(i + 3))
+            push((tmp & 0xFF0000) >> 16)
+            push((tmp & 0xFF00) >> 8)
+            push(tmp & 0xFF)
+        }
 
-		if (placeHolders === 2) {
-			tmp = (decode(b64.charAt(i)) << 2) | (decode(b64.charAt(i + 1)) >> 4)
-			push(tmp & 0xFF)
-		} else if (placeHolders === 1) {
-			tmp = (decode(b64.charAt(i)) << 10) | (decode(b64.charAt(i + 1)) << 4) | (decode(b64.charAt(i + 2)) >> 2)
-			push((tmp >> 8) & 0xFF)
-			push(tmp & 0xFF)
-		}
+        if (placeHolders === 2) {
+            tmp = (decode(b64.charAt(i)) << 2) | (decode(b64.charAt(i + 1)) >> 4)
+            push(tmp & 0xFF)
+        } else if (placeHolders === 1) {
+            tmp = (decode(b64.charAt(i)) << 10) | (decode(b64.charAt(i + 1)) << 4) | (decode(b64.charAt(i + 2)) >> 2)
+            push((tmp >> 8) & 0xFF)
+            push(tmp & 0xFF)
+        }
 
-		return arr
-	}
+        return arr
+    }
 
-	function uint8ToBase64 (uint8) {
-		var i,
-			extraBytes = uint8.length % 3, // if we have 1 byte left, pad 2 bytes
-			output = "",
-			temp, length
+    function uint8ToBase64 (uint8) {
+        var i,
+            extraBytes = uint8.length % 3, // if we have 1 byte left, pad 2 bytes
+            output = "",
+            temp, length
 
-		function encode (num) {
-			return lookup.charAt(num)
-		}
+        function encode (num) {
+            return lookup.charAt(num)
+        }
 
-		function tripletToBase64 (num) {
-			return encode(num >> 18 & 0x3F) + encode(num >> 12 & 0x3F) + encode(num >> 6 & 0x3F) + encode(num & 0x3F)
-		}
+        function tripletToBase64 (num) {
+            return encode(num >> 18 & 0x3F) + encode(num >> 12 & 0x3F) + encode(num >> 6 & 0x3F) + encode(num & 0x3F)
+        }
 
-		// go through the array every three bytes, we'll deal with trailing stuff later
-		for (i = 0, length = uint8.length - extraBytes; i < length; i += 3) {
-			temp = (uint8[i] << 16) + (uint8[i + 1] << 8) + (uint8[i + 2])
-			output += tripletToBase64(temp)
-		}
+        // go through the array every three bytes, we'll deal with trailing stuff later
+        for (i = 0, length = uint8.length - extraBytes; i < length; i += 3) {
+            temp = (uint8[i] << 16) + (uint8[i + 1] << 8) + (uint8[i + 2])
+            output += tripletToBase64(temp)
+        }
 
-		// pad the end with zeros, but make sure to not forget the extra bytes
-		switch (extraBytes) {
-			case 1:
-				temp = uint8[uint8.length - 1]
-				output += encode(temp >> 2)
-				output += encode((temp << 4) & 0x3F)
-				output += '=='
-				break
-			case 2:
-				temp = (uint8[uint8.length - 2] << 8) + (uint8[uint8.length - 1])
-				output += encode(temp >> 10)
-				output += encode((temp >> 4) & 0x3F)
-				output += encode((temp << 2) & 0x3F)
-				output += '='
-				break
-		}
+        // pad the end with zeros, but make sure to not forget the extra bytes
+        switch (extraBytes) {
+            case 1:
+                temp = uint8[uint8.length - 1]
+                output += encode(temp >> 2)
+                output += encode((temp << 4) & 0x3F)
+                output += '=='
+                break
+            case 2:
+                temp = (uint8[uint8.length - 2] << 8) + (uint8[uint8.length - 1])
+                output += encode(temp >> 10)
+                output += encode((temp >> 4) & 0x3F)
+                output += encode((temp << 2) & 0x3F)
+                output += '='
+                break
+        }
 
-		return output
-	}
+        return output
+    }
 
-	module.exports.toByteArray = b64ToByteArray
-	module.exports.fromByteArray = uint8ToBase64
+    module.exports.toByteArray = b64ToByteArray
+    module.exports.fromByteArray = uint8ToBase64
 }())
 
 },{}],30:[function(require,module,exports){
