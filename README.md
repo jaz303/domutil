@@ -63,6 +63,12 @@ Shortcut for:
 
 #### `du.replace(oldEl, newEl)`
 
+### Text
+
+#### `du.getText(el)`
+
+#### `du.setText(el, text)`
+
 ### Viewport
 
 #### `du.viewportSize()`
