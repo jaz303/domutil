@@ -5,6 +5,7 @@ extend(require('./impl/events'));
 extend(require('./impl/layout'));
 extend(require('./impl/matches_selector'));
 extend(require('./impl/node'));
+extend(require('./impl/text'));
 extend(require('./impl/viewport'));
 
 function extend(things) {

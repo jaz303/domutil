@@ -196,12 +196,19 @@ exports.bind_c = bind_c;
 exports.delegate_c = delegate_c;
 exports.stop = stop;
 },{"./matches_selector":4}],3:[function(_dereq_,module,exports){
+exports.setRect = function(el, x, y, width, height) {
+	el.style.left = x + 'px';
+    el.style.top = y + 'px';
+    el.style.width = width + 'px';
+    el.style.height = height + 'px';
+}
+
 exports.setPosition = function(el, x, y) {
     el.style.left = x + 'px';
     el.style.top = y + 'px';
 }
 
-exports.setSize = function(width, height) {
+exports.setSize = function(el, width, height) {
     el.style.width = width + 'px';
     el.style.height = height + 'px';
 }
@@ -233,7 +240,33 @@ if (nativeMatch) {
 exports.isElement = function(el) {
 	return el && el.nodeType === 1;
 }
+
+exports.replace = function(oldEl, newEl) {
+	oldEl.parentNode.replaceChild(newEl, oldEl);
+}
 },{}],6:[function(_dereq_,module,exports){
+if ('textContent' in document.body) {
+    
+    exports.getText = function(el) {
+        return el.textContent;
+    }
+
+    exports.setText = function(el, text) {
+        el.textContent = text;
+    }
+
+} else {
+
+    exports.getText = function(el) {
+        return el.innerText;
+    }
+
+    exports.setText = function(el, text) {
+        el.innerText = text;
+    }
+
+}
+},{}],7:[function(_dereq_,module,exports){
 // http://stackoverflow.com/questions/1248081/get-the-browser-viewport-dimensions-with-javascript
 exports.viewportSize = function() {
 	return {
@@ -241,7 +274,7 @@ exports.viewportSize = function() {
 	    height: Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
 	};
 }
-},{}],7:[function(_dereq_,module,exports){
+},{}],8:[function(_dereq_,module,exports){
 var du = module.exports = {};
 
 extend(_dereq_('./impl/classes'));
@@ -249,6 +282,7 @@ extend(_dereq_('./impl/events'));
 extend(_dereq_('./impl/layout'));
 extend(_dereq_('./impl/matches_selector'));
 extend(_dereq_('./impl/node'));
+extend(_dereq_('./impl/text'));
 extend(_dereq_('./impl/viewport'));
 
 function extend(things) {
@@ -257,6 +291,6 @@ function extend(things) {
     }
 }
 
-},{"./impl/classes":1,"./impl/events":2,"./impl/layout":3,"./impl/matches_selector":4,"./impl/node":5,"./impl/viewport":6}]},{},[7])
-(7)
+},{"./impl/classes":1,"./impl/events":2,"./impl/layout":3,"./impl/matches_selector":4,"./impl/node":5,"./impl/text":6,"./impl/viewport":7}]},{},[8])
+(8)
 });
