@@ -1,4 +1,4 @@
-!function(e){if("object"==typeof exports)module.exports=e();else if("function"==typeof define&&define.amd)define(e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.domutil=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
+!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.domutil=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 if (typeof window.DOMTokenList === 'undefined') {
 
 	// Constants from jQuery
@@ -99,8 +99,8 @@ if (typeof window.DOMTokenList === 'undefined') {
 
 }
 
-},{}],2:[function(_dereq_,module,exports){
-var matchesSelector = _dereq_('./matches_selector').matchesSelector;
+},{}],2:[function(require,module,exports){
+var matchesSelector = require('./matches_selector').matchesSelector;
 
 var bind = null, unbind = null;
 
@@ -195,7 +195,7 @@ exports.delegate = delegate;
 exports.bind_c = bind_c;
 exports.delegate_c = delegate_c;
 exports.stop = stop;
-},{"./matches_selector":4}],3:[function(_dereq_,module,exports){
+},{"./matches_selector":4}],3:[function(require,module,exports){
 exports.setRect = function(el, x, y, width, height) {
 	el.style.left = x + 'px';
     el.style.top = y + 'px';
@@ -212,7 +212,7 @@ exports.setSize = function(el, width, height) {
     el.style.width = width + 'px';
     el.style.height = height + 'px';
 }
-},{}],4:[function(_dereq_,module,exports){
+},{}],4:[function(require,module,exports){
 var proto = window.Element.prototype;
 var nativeMatch = proto.webkitMatchesSelector
 					|| proto.mozMatchesSelector
@@ -236,7 +236,29 @@ if (nativeMatch) {
 
 }
 
-},{}],5:[function(_dereq_,module,exports){
+},{}],5:[function(require,module,exports){
+exports.append = append;
+function append(el, content) {
+	if (Array.isArray(content)) {
+		for (var i = 0, l = content.length; i < l; ++i) {
+			append(el, content[i]);
+		}
+	} else if (typeof content === 'string') {
+		if (content.charAt(0) === '<') {
+			el.innerHTML += content;
+		} else {
+			el.appendChild(document.createTextNode(content));
+		}
+	} else {
+		el.appendChild(content);
+	}
+}
+
+exports.clear = clear;
+function clear(el) {
+	el.innerHTML = '';
+}
+
 exports.isElement = function(el) {
 	return el && el.nodeType === 1;
 }
@@ -244,8 +266,13 @@ exports.isElement = function(el) {
 exports.replace = function(oldEl, newEl) {
 	oldEl.parentNode.replaceChild(newEl, oldEl);
 }
-},{}],6:[function(_dereq_,module,exports){
-if ('textContent' in document.body) {
+
+exports.setContent = function(el, content) {
+	clear(el);
+	append(el, content);
+}
+},{}],6:[function(require,module,exports){
+if ('textContent' in document.createElement('span')) {
     
     exports.getText = function(el) {
         return el.textContent;
@@ -266,7 +293,7 @@ if ('textContent' in document.body) {
     }
 
 }
-},{}],7:[function(_dereq_,module,exports){
+},{}],7:[function(require,module,exports){
 // http://stackoverflow.com/questions/1248081/get-the-browser-viewport-dimensions-with-javascript
 exports.viewportSize = function() {
 	return {
@@ -274,16 +301,16 @@ exports.viewportSize = function() {
 	    height: Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
 	};
 }
-},{}],8:[function(_dereq_,module,exports){
+},{}],8:[function(require,module,exports){
 var du = module.exports = {};
 
-extend(_dereq_('./impl/classes'));
-extend(_dereq_('./impl/events'));
-extend(_dereq_('./impl/layout'));
-extend(_dereq_('./impl/matches_selector'));
-extend(_dereq_('./impl/node'));
-extend(_dereq_('./impl/text'));
-extend(_dereq_('./impl/viewport'));
+extend(require('./impl/classes'));
+extend(require('./impl/events'));
+extend(require('./impl/layout'));
+extend(require('./impl/matches_selector'));
+extend(require('./impl/node'));
+extend(require('./impl/text'));
+extend(require('./impl/viewport'));
 
 function extend(things) {
     for (var k in things) {
@@ -291,6 +318,5 @@ function extend(things) {
     }
 }
 
-},{"./impl/classes":1,"./impl/events":2,"./impl/layout":3,"./impl/matches_selector":4,"./impl/node":5,"./impl/text":6,"./impl/viewport":7}]},{},[8])
-(8)
+},{"./impl/classes":1,"./impl/events":2,"./impl/layout":3,"./impl/matches_selector":4,"./impl/node":5,"./impl/text":6,"./impl/viewport":7}]},{},[8])(8)
 });
