@@ -272,6 +272,28 @@ exports.setContent = function(el, content) {
 	append(el, content);
 }
 },{}],6:[function(require,module,exports){
+function v(val) {
+    if (typeof val === 'number') {
+        return val + 'px';
+    } else {
+        return val;
+    }
+}
+
+exports.style = function(el, attribute, value) {
+    if (typeof attribute === 'string') {
+        el.style[attribute] = v(value);
+    } else {
+        for (var k in attribute) {
+            el.style[k] = v(attribute[k]);
+        }
+    }
+}
+
+exports.removeStyle = function(el, attribute) {
+    el.style[attribute] = '';
+}
+},{}],7:[function(require,module,exports){
 if ('textContent' in document.createElement('span')) {
     
     exports.getText = function(el) {
@@ -293,7 +315,7 @@ if ('textContent' in document.createElement('span')) {
     }
 
 }
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 // http://stackoverflow.com/questions/1248081/get-the-browser-viewport-dimensions-with-javascript
 exports.viewportSize = function() {
 	return {
@@ -301,7 +323,7 @@ exports.viewportSize = function() {
 	    height: Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
 	};
 }
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 var du = module.exports = {};
 
 extend(require('./impl/classes'));
@@ -309,6 +331,7 @@ extend(require('./impl/events'));
 extend(require('./impl/layout'));
 extend(require('./impl/matches_selector'));
 extend(require('./impl/node'));
+extend(require('./impl/style'));
 extend(require('./impl/text'));
 extend(require('./impl/viewport'));
 
@@ -318,5 +341,5 @@ function extend(things) {
     }
 }
 
-},{"./impl/classes":1,"./impl/events":2,"./impl/layout":3,"./impl/matches_selector":4,"./impl/node":5,"./impl/text":6,"./impl/viewport":7}]},{},[8])(8)
+},{"./impl/classes":1,"./impl/events":2,"./impl/layout":3,"./impl/matches_selector":4,"./impl/node":5,"./impl/style":6,"./impl/text":7,"./impl/viewport":8}]},{},[9])(9)
 });
