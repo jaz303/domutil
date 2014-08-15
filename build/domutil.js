@@ -267,7 +267,7 @@ exports.replace = function(oldEl, newEl) {
 	oldEl.parentNode.replaceChild(newEl, oldEl);
 }
 
-exports.setContent = function(el, content) {
+exports.content = function(el, content) {
 	clear(el);
 	append(el, content);
 }
@@ -300,7 +300,7 @@ if ('textContent' in document.createElement('span')) {
         return el.textContent;
     }
 
-    exports.setText = function(el, text) {
+    exports.text = function(el, text) {
         el.textContent = text;
     }
 
@@ -310,7 +310,7 @@ if ('textContent' in document.createElement('span')) {
         return el.innerText;
     }
 
-    exports.setText = function(el, text) {
+    exports.text = function(el, text) {
         el.innerText = text;
     }
 

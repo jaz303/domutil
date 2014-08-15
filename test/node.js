@@ -74,12 +74,12 @@ test('isElement()', function(assert) {
 
 });
 
-test('setContent()', function(assert) {
+test('content()', function(assert) {
 
 	var el = document.createElement('div');
 	el.innerHTML = '<b>BOOM</b>';
 
-	du.setContent(el, ['<em>foo</em>', 'bar', 'baz']);
+	du.content(el, ['<em>foo</em>', 'bar', 'baz']);
 
 	assert.equal(el.childNodes.length, 3);
 	assert.equal(el.childNodes[0].nodeName.toLowerCase(), "em");

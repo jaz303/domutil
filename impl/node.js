@@ -28,7 +28,7 @@ exports.replace = function(oldEl, newEl) {
 	oldEl.parentNode.replaceChild(newEl, oldEl);
 }
 
-exports.setContent = function(el, content) {
+exports.content = function(el, content) {
 	clear(el);
 	append(el, content);
 }

@@ -10,11 +10,11 @@ test('getText()', function(assert) {
 
 });
 
-test('setText()', function(assert) {
+test('text()', function(assert) {
 
     var el = document.querySelector('#text_set');
 
-    du.setText(el, "wam bam");
+    du.text(el, "wam bam");
 
     assert.equal(du.getText(el), "wam bam");
     assert.end();

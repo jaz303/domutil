@@ -4,7 +4,7 @@ if ('textContent' in document.createElement('span')) {
         return el.textContent;
     }
 
-    exports.setText = function(el, text) {
+    exports.text = function(el, text) {
         el.textContent = text;
     }
 
@@ -14,7 +14,7 @@ if ('textContent' in document.createElement('span')) {
         return el.innerText;
     }
 
-    exports.setText = function(el, text) {
+    exports.text = function(el, text) {
         el.innerText = text;
     }
 

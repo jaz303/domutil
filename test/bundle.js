@@ -267,7 +267,7 @@ exports.replace = function(oldEl, newEl) {
 	oldEl.parentNode.replaceChild(newEl, oldEl);
 }
 
-exports.setContent = function(el, content) {
+exports.content = function(el, content) {
 	clear(el);
 	append(el, content);
 }
@@ -300,7 +300,7 @@ if ('textContent' in document.createElement('span')) {
         return el.textContent;
     }
 
-    exports.setText = function(el, text) {
+    exports.text = function(el, text) {
         el.textContent = text;
     }
 
@@ -310,7 +310,7 @@ if ('textContent' in document.createElement('span')) {
         return el.innerText;
     }
 
-    exports.setText = function(el, text) {
+    exports.text = function(el, text) {
         el.innerText = text;
     }
 
@@ -1959,12 +1959,12 @@ test('isElement()', function(assert) {
 
 });
 
-test('setContent()', function(assert) {
+test('content()', function(assert) {
 
 	var el = document.createElement('div');
 	el.innerHTML = '<b>BOOM</b>';
 
-	du.setContent(el, ['<em>foo</em>', 'bar', 'baz']);
+	du.content(el, ['<em>foo</em>', 'bar', 'baz']);
 
 	assert.equal(el.childNodes.length, 3);
 	assert.equal(el.childNodes[0].nodeName.toLowerCase(), "em");
@@ -2040,11 +2040,11 @@ test('getText()', function(assert) {
 
 });
 
-test('setText()', function(assert) {
+test('text()', function(assert) {
 
     var el = document.querySelector('#text_set');
 
-    du.setText(el, "wam bam");
+    du.text(el, "wam bam");
 
     assert.equal(du.getText(el), "wam bam");
     assert.end();

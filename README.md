@@ -73,7 +73,7 @@ Remove all child nodes of `el`.
 
 Replace `oldEl` with `newEl`.
 
-#### `du.setContent(el, content)`
+#### `du.content(el, content)`
 
 Set all children of `el`. Equivalent to `du.clear(el); du.append(el, content)`.
 
@@ -95,7 +95,7 @@ Remove style `attribute` from `el`.
 
 #### `du.getText(el)`
 
-#### `du.setText(el, text)`
+#### `du.text(el, text)`
 
 ### Viewport
 
