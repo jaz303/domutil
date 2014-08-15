@@ -59,9 +59,37 @@ Shortcut for:
 
 ### Node
 
+#### `du.append(el, content)`
+
+Append `content` to `el`. `content` may be a text string, HTML string, DOM node, `DocumentFragment`, or an array of the aforementioned.
+
+#### `du.clear(el)`
+
+Remove all child nodes of `el`.
+
 #### `du.isElement(thing)`
 
 #### `du.replace(oldEl, newEl)`
+
+Replace `oldEl` with `newEl`.
+
+#### `du.setContent(el, content)`
+
+Set all children of `el`. Equivalent to `du.clear(el); du.append(el, content)`.
+
+### Style
+
+#### `du.style(el, attribute, value)`
+
+Equivalent to `el.style[attribute] = value`. If `value` is a number, `px` will be appended.
+
+#### `du.style(el, attributes)`
+
+Assign all key/value pairs of `attributes` to `el.style`.
+
+#### `du.removeStyle(el, attribute)`
+
+Remove style `attribute` from `el`.
 
 ### Text
 
