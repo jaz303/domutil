@@ -99,6 +99,19 @@ if (typeof window.DOMTokenList === 'undefined') {
 
 }
 
+exports.removeMatchingClasses = function(el, regex) {
+	var out = '';
+	el.className.split(/\s+/).forEach(function(cn) {
+		if (!cn.match(regex)) {
+			if (out.length) {
+				out += ' ';
+			}
+			out += cn;
+		}
+	});
+	el.className = out;
+}
+
 },{}],2:[function(require,module,exports){
 var matchesSelector = require('./matches_selector').matchesSelector;
 
@@ -1682,6 +1695,18 @@ test("toggleClass()", function(assert) {
     assert.notOk(du.hasClass(el, 'foo'));
     assert.ok(du.hasClass(el, 'bar'));
     assert.notOk(du.hasClass(el, 'baz'));
+    assert.end();
+
+});
+
+test("removeMatchingClasses()", function(assert) {
+
+    var el = document.createElement('div');
+    el.className = 'prefix-foo bar zed prefix-bleem baz prefix-zazoo';
+
+    du.removeMatchingClasses(el, /prefix-/);
+
+    assert.equal(el.className, 'bar zed baz');
     assert.end();
 
 });

@@ -53,3 +53,15 @@ test("toggleClass()", function(assert) {
     assert.end();
 
 });
+
+test("removeMatchingClasses()", function(assert) {
+
+    var el = document.createElement('div');
+    el.className = 'prefix-foo bar zed prefix-bleem baz prefix-zazoo';
+
+    du.removeMatchingClasses(el, /prefix-/);
+
+    assert.equal(el.className, 'bar zed baz');
+    assert.end();
+
+});

@@ -97,3 +97,16 @@ if (typeof window.DOMTokenList === 'undefined') {
 	}
 
 }
+
+exports.removeMatchingClasses = function(el, regex) {
+	var out = '';
+	el.className.split(/\s+/).forEach(function(cn) {
+		if (!cn.match(regex)) {
+			if (out.length) {
+				out += ' ';
+			}
+			out += cn;
+		}
+	});
+	el.className = out;
+}
