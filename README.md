@@ -24,6 +24,10 @@ In the codes:
 
 #### `du.toggleClass(el, className)`
 
+#### `du.removeMatchingClasses(el, regexp)`
+
+Remove all classes on element that match `regexp`.
+
 ### Events
 
 #### `du.bind(el, evtType, cb, [useCapture])`
