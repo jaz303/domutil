@@ -2071,11 +2071,13 @@ test('isVisible(), isHidden()', function(assert) {
 	for (var i = 0; i < tests.length; ++i) {
 		assert.equal(
 			du.isVisible(tests[i]),
-			tests[i].getAttribute('data-result') === 'true'
+			tests[i].getAttribute('data-result') === 'true',
+			tests[i].getAttribute('data-test') + ', isVisible()'
 		);
 		assert.equal(
 			du.isHidden(tests[i]),
-			tests[i].getAttribute('data-result') !== 'true'
+			tests[i].getAttribute('data-result') !== 'true',
+			tests[i].getAttribute('data-test') + ', isHidden()'
 		);
 	}
 

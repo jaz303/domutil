@@ -52,45 +52,45 @@
     
     <div id='is_visible'>
 
-      <!-- element nested inside display: none -->
       <div style='display:none'>
         <div class='test-case'
+             data-test='element nested inside display: none'
              data-result='false'
-             style='width:100px;height:100px'></div>
+             style='display: block; width:100px;height:100px'></div>
       </div>
 
-      <!-- element nested inside visibility: hidden -->
-      <!--
-      <div style='visibility:hidden'>
-        <div class='test-case'
-             data-result='false'
-             style='width:100px;height:100px'></div>
-      </div>
-      -->
-
-      <!-- element with display: none -->
       <div style='display:none'
            class='test-case'
+           data-test='element with display: none'
            data-result='false'
            style='width:100px;height:100px'></div>
 
-      <!-- visible element -->
+      <div style='visibility:hidden'
+           class='test-case'
+           data-test='element with visibility: hidden'
+           data-result='false'
+           style='width:100px;height:100px'></div>
+
       <div class='test-case'
+           data-test='visible element, explicit size'
            data-result='true'
            style='width:100px;height:100px'></div>
 
-      <!-- visible element -->
-      <div class='test-case' data-result='true'>
+      <div class='test-case'
+           data-test='visible element, with content'
+           data-result='true'>
         <div>foo bar baz</div>
       </div>
 
-      <!-- visible element, with zero height -->
-      <div class='test-case' data-result='false' style='height:0'></div>
+      <div class='test-case'
+           data-test='visible element, with zero height'
+           data-result='false'
+           style='height:0'></div>
 
     </div>
 
   </div>
-  
+
   <div id='stop'>
     <a href='#'>
       <span></span>

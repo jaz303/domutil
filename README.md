@@ -68,7 +68,7 @@ Shortcut for:
 
 Fast check for `el.offsetWidth === 0 || el.offsetHeight === 0`. This is the same test used by jQuery's `:visible` pseudo-selector.
 
-This will detect elements that have been hidden with `display: none`; it is not a robust test for `visibility: hidden`.
+This will detect elements that have been hidden directly with `display: none` or `visibility: hidden`. It also seems to work with elements whose ancestors have been hidden with `display: none`.
 
 False positives will be reported for elements which have zero height or width.
 
