@@ -50,3 +50,21 @@ test('removeStyle()', function(assert) {
 	assert.end();
 
 });
+
+test('isVisible(), isHidden()', function(assert) {
+
+	var tests = document.querySelectorAll('#is_visible .test-case');
+	for (var i = 0; i < tests.length; ++i) {
+		assert.equal(
+			du.isVisible(tests[i]),
+			tests[i].getAttribute('data-result') === 'true'
+		);
+		assert.equal(
+			du.isHidden(tests[i]),
+			tests[i].getAttribute('data-result') !== 'true'
+		);
+	}
+
+	assert.end();
+
+});

@@ -49,7 +49,48 @@
     <div id='append_text'><span class='foo'></span></div>
     <div id='append_el'><span class='foo'></span></div>
     <div id='clear'><b></b><p>...</p></div>
+    
+    <div id='is_visible'>
+
+      <!-- element nested inside display: none -->
+      <div style='display:none'>
+        <div class='test-case'
+             data-result='false'
+             style='width:100px;height:100px'></div>
+      </div>
+
+      <!-- element nested inside visibility: hidden -->
+      <!--
+      <div style='visibility:hidden'>
+        <div class='test-case'
+             data-result='false'
+             style='width:100px;height:100px'></div>
+      </div>
+      -->
+
+      <!-- element with display: none -->
+      <div style='display:none'
+           class='test-case'
+           data-result='false'
+           style='width:100px;height:100px'></div>
+
+      <!-- visible element -->
+      <div class='test-case'
+           data-result='true'
+           style='width:100px;height:100px'></div>
+
+      <!-- visible element -->
+      <div class='test-case' data-result='true'>
+        <div>foo bar baz</div>
+      </div>
+
+      <!-- visible element, with zero height -->
+      <div class='test-case' data-result='false' style='height:0'></div>
+
+    </div>
+
   </div>
+  
   <div id='stop'>
     <a href='#'>
       <span></span>

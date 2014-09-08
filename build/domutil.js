@@ -225,6 +225,14 @@ exports.setSize = function(el, width, height) {
     el.style.width = width + 'px';
     el.style.height = height + 'px';
 }
+
+exports.isHidden = function(el) {
+    return el.offsetWidth <= 0 || el.offsetHeight <= 0;
+}
+
+exports.isVisible = function(el) {
+    return !(el.offsetWidth <= 0 || el.offsetHeight <= 0);
+}
 },{}],4:[function(require,module,exports){
 var proto = window.Element.prototype;
 var nativeMatch = proto.webkitMatchesSelector

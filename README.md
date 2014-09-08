@@ -53,9 +53,28 @@ Shortcut for:
 
 ### Layout
 
+#### `du.setRect(el, x, y, width, height)`
+
+Shortcut for:
+
+	du.setPosition(el, x, y);
+	du.setSize(el, width, height);
+
 #### `du.setPosition(el, x, y)`
 
 #### `du.setSize(el, width, height)`
+
+#### `du.isInvisible(el)`
+
+Fast check for `el.offsetWidth === 0 || el.offsetHeight === 0`.
+
+This will detect elements that have been hidden with `display: none`; it is not a robust test for `visibility: hidden`.
+
+False positives will be reported for elements which have zero height or width.
+
+#### `du.isVisible(el)`
+
+Inverse of `du.isInvisible(el)`.
 
 ### Matches Selector
 
