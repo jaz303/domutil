@@ -1,7 +1,7 @@
 {
   "name": "domutil",
   "main": "index.js",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "DOM utility functions",
   "scripts": {
     "watch-demo-js": "watchify test/main.js -o test/bundle.js"
