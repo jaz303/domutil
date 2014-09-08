@@ -64,7 +64,7 @@ Shortcut for:
 
 #### `du.setSize(el, width, height)`
 
-#### `du.isInvisible(el)`
+#### `du.isHidden(el)`
 
 Fast check for `el.offsetWidth === 0 || el.offsetHeight === 0`. This is the same test used by jQuery's `:visible` pseudo-selector.
 
@@ -74,7 +74,7 @@ False positives will be reported for elements which have zero height or width.
 
 #### `du.isVisible(el)`
 
-Inverse of `du.isInvisible(el)`.
+Inverse of `du.isHidden(el)`.
 
 ### Matches Selector
 
