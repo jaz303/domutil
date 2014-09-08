@@ -289,8 +289,12 @@ exports.replace = function(oldEl, newEl) {
 }
 
 exports.content = function(el, content) {
-	clear(el);
-	append(el, content);
+	if (typeof content === 'string') {
+		el.innerHTML = content;
+	} else{
+		clear(el);
+		append(el, content);	
+	}
 }
 },{}],"/Users/jason/dev/projects/domutil/impl/style.js":[function(require,module,exports){
 function v(val) {
@@ -314,7 +318,6 @@ exports.style = function(el, attribute, value) {
 exports.removeStyle = function(el, attribute) {
     el.style[attribute] = '';
 }
-
 },{}],"/Users/jason/dev/projects/domutil/impl/text.js":[function(require,module,exports){
 if ('textContent' in document.createElement('span')) {
     

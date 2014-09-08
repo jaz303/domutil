@@ -29,6 +29,10 @@ exports.replace = function(oldEl, newEl) {
 }
 
 exports.content = function(el, content) {
-	clear(el);
-	append(el, content);
+	if (typeof content === 'string') {
+		el.innerHTML = content;
+	} else{
+		clear(el);
+		append(el, content);	
+	}
 }
