@@ -1,7 +1,7 @@
 {
   "name": "domutil",
   "main": "index.js",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "DOM utility functions",
   "scripts": {
     "watch-demo-js": "watchify test/main.js -o test/bundle.js"
@@ -19,5 +19,9 @@
   "devDependencies": {
     "uglify-js": "~2.4.14",
     "tape": "~2.13.3"
+  },
+  "dependencies": {
+    "dom-bind": "^1.0.0",
+    "dom-matchesselector": "^1.0.0"
   }
 }
