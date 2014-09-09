@@ -113,102 +113,15 @@ exports.removeMatchingClasses = function(el, regex) {
 }
 
 },{}],"/Users/jason/dev/projects/domutil/impl/events.js":[function(require,module,exports){
-var matchesSelector = require('./matches_selector').matchesSelector;
+module.exports = exports = require('dom-bind');
 
-var bind = null, unbind = null;
-
-if (typeof window.addEventListener === 'function') {
-
-	bind = function(el, evtType, cb, useCapture) {
-		el.addEventListener(evtType, cb, useCapture || false);
-		return cb;
-	}
-
-	unbind = function(el, evtType, cb, useCapture) {
-		el.removeEventListener(evtType, cb, useCapture || false);
-		return cb;
-	}
-
-} else if (typeof window.attachEvent === 'function') {
-
-	bind = function(el, evtType, cb, useCapture) {
-		
-		function handler(evt) {
-			evt = evt || window.event;
-			
-			if (!evt.preventDefault) {
-				evt.preventDefault = function() { evt.returnValue = false; }
-			}
-			
-			if (!evt.stopPropagation) {
-				evt.stopPropagation = function() { evt.cancelBubble = true; }
-			}
-
-			cb.call(el, evt);
-		}
-		
-		el.attachEvent('on' + evtType, handler);
-		return handler;
-	
-	}
-
-	unbind = function(el, evtType, cb, useCapture) {
-		el.detachEvent('on' + evtType, cb);
-		return cb;
-	}
-
-}
-
-function delegate(el, evtType, selector, cb, useCapture) {
-	return bind(el, evtType, function(evt) {
-		var currTarget = evt.target;
-		while (currTarget && currTarget !== el) {
-			if (matchesSelector(selector, currTarget)) {
-				evt.delegateTarget = currTarget;
-				cb.call(el, evt);
-				break;
-			}
-			currTarget = currTarget.parentNode;
-		}
-	}, useCapture);
-}
-
-function bind_c(el, evtType, cb, useCapture) {
-	cb = bind(el, evtType, cb, useCapture);
-
-	var removed = false;
-	return function() {
-		if (removed) return;
-		removed = true;
-		unbind(el, evtType, cb, useCapture);
-		el = cb = null;
-	}
-}
-
-function delegate_c(el, evtType, selector, cb, useCapture) {
-	cb = delegate(el, evtType, selector, cb, useCapture);
-
-	var removed = false;
-	return function() {
-		if (removed) return;
-		removed = true;
-		unbind(el, evtType, cb, useCapture);
-		el = cb = null;
-	}
-}
-
+exports.stop = stop;
 function stop(evt) {
 	evt.preventDefault();
 	evt.stopPropagation();
 }
 
-exports.bind = bind;
-exports.unbind = unbind;
-exports.delegate = delegate;
-exports.bind_c = bind_c;
-exports.delegate_c = delegate_c;
-exports.stop = stop;
-},{"./matches_selector":"/Users/jason/dev/projects/domutil/impl/matches_selector.js"}],"/Users/jason/dev/projects/domutil/impl/layout.js":[function(require,module,exports){
+},{"dom-bind":"/Users/jason/dev/projects/domutil/node_modules/dom-bind/index.js"}],"/Users/jason/dev/projects/domutil/impl/layout.js":[function(require,module,exports){
 exports.setRect = function(el, x, y, width, height) {
 	el.style.left = x + 'px';
     el.style.top = y + 'px';
@@ -234,30 +147,8 @@ exports.isVisible = function(el) {
     return !(el.offsetWidth <= 0 || el.offsetHeight <= 0);
 }
 },{}],"/Users/jason/dev/projects/domutil/impl/matches_selector.js":[function(require,module,exports){
-var proto = window.Element.prototype;
-var nativeMatch = proto.webkitMatchesSelector
-					|| proto.mozMatchesSelector
-					|| proto.msMatchesSelector
-					|| proto.oMatchesSelector;
-
-if (nativeMatch) {
-	
-	exports.matchesSelector = function(selector, el) {
-		return nativeMatch.call(el, selector);
-	}
-
-} else {
-
-	console.warn("Warning: using slow matchesSelector()");
-	
-	var indexOf = Array.prototype.indexOf;
-	exports.matchesSelector = function(selector, el) {
-		return indexOf.call(document.querySelectorAll(selector), el) >= 0;
-	}
-
-}
-
-},{}],"/Users/jason/dev/projects/domutil/impl/node.js":[function(require,module,exports){
+module.exports = require('dom-matchesselector');
+},{"dom-matchesselector":"/Users/jason/dev/projects/domutil/node_modules/dom-matchesselector/index.js"}],"/Users/jason/dev/projects/domutil/impl/node.js":[function(require,module,exports){
 exports.append = append;
 function append(el, content) {
 	if (Array.isArray(content)) {
@@ -366,7 +257,145 @@ function extend(things) {
     }
 }
 
-},{"./impl/classes":"/Users/jason/dev/projects/domutil/impl/classes.js","./impl/events":"/Users/jason/dev/projects/domutil/impl/events.js","./impl/layout":"/Users/jason/dev/projects/domutil/impl/layout.js","./impl/matches_selector":"/Users/jason/dev/projects/domutil/impl/matches_selector.js","./impl/node":"/Users/jason/dev/projects/domutil/impl/node.js","./impl/style":"/Users/jason/dev/projects/domutil/impl/style.js","./impl/text":"/Users/jason/dev/projects/domutil/impl/text.js","./impl/viewport":"/Users/jason/dev/projects/domutil/impl/viewport.js"}],"/Users/jason/dev/projects/domutil/node_modules/tape/index.js":[function(require,module,exports){
+},{"./impl/classes":"/Users/jason/dev/projects/domutil/impl/classes.js","./impl/events":"/Users/jason/dev/projects/domutil/impl/events.js","./impl/layout":"/Users/jason/dev/projects/domutil/impl/layout.js","./impl/matches_selector":"/Users/jason/dev/projects/domutil/impl/matches_selector.js","./impl/node":"/Users/jason/dev/projects/domutil/impl/node.js","./impl/style":"/Users/jason/dev/projects/domutil/impl/style.js","./impl/text":"/Users/jason/dev/projects/domutil/impl/text.js","./impl/viewport":"/Users/jason/dev/projects/domutil/impl/viewport.js"}],"/Users/jason/dev/projects/domutil/node_modules/dom-bind/index.js":[function(require,module,exports){
+var matches = require('dom-matchesselector');
+
+var bind = null, unbind = null;
+
+if (typeof window.addEventListener === 'function') {
+
+	bind = function(el, evtType, cb, useCapture) {
+		el.addEventListener(evtType, cb, useCapture || false);
+		return cb;
+	}
+
+	unbind = function(el, evtType, cb, useCapture) {
+		el.removeEventListener(evtType, cb, useCapture || false);
+		return cb;
+	}
+
+} else if (typeof window.attachEvent === 'function') {
+
+	bind = function(el, evtType, cb, useCapture) {
+		
+		function handler(evt) {
+			evt = evt || window.event;
+			
+			if (!evt.preventDefault) {
+				evt.preventDefault = function() { evt.returnValue = false; }
+			}
+			
+			if (!evt.stopPropagation) {
+				evt.stopPropagation = function() { evt.cancelBubble = true; }
+			}
+
+			cb.call(el, evt);
+		}
+		
+		el.attachEvent('on' + evtType, handler);
+		return handler;
+	
+	}
+
+	unbind = function(el, evtType, cb, useCapture) {
+		el.detachEvent('on' + evtType, cb);
+		return cb;
+	}
+
+}
+
+function delegate(el, evtType, selector, cb, useCapture) {
+	return bind(el, evtType, function(evt) {
+		var currTarget = evt.target;
+		while (currTarget && currTarget !== el) {
+			if (matches(selector, currTarget)) {
+				evt.delegateTarget = currTarget;
+				cb.call(el, evt);
+				break;
+			}
+			currTarget = currTarget.parentNode;
+		}
+	}, useCapture);
+}
+
+function bind_c(el, evtType, cb, useCapture) {
+	cb = bind(el, evtType, cb, useCapture);
+
+	var removed = false;
+	return function() {
+		if (removed) return;
+		removed = true;
+		unbind(el, evtType, cb, useCapture);
+		el = cb = null;
+	}
+}
+
+function delegate_c(el, evtType, selector, cb, useCapture) {
+	cb = delegate(el, evtType, selector, cb, useCapture);
+
+	var removed = false;
+	return function() {
+		if (removed) return;
+		removed = true;
+		unbind(el, evtType, cb, useCapture);
+		el = cb = null;
+	}
+}
+
+exports.bind = bind;
+exports.unbind = unbind;
+exports.delegate = delegate;
+exports.bind_c = bind_c;
+exports.delegate_c = delegate_c;
+},{"dom-matchesselector":"/Users/jason/dev/projects/domutil/node_modules/dom-bind/node_modules/dom-matchesselector/index.js"}],"/Users/jason/dev/projects/domutil/node_modules/dom-bind/node_modules/dom-matchesselector/index.js":[function(require,module,exports){
+var proto = window.Element.prototype;
+var nativeMatch = proto.webkitMatchesSelector
+					|| proto.mozMatchesSelector
+					|| proto.msMatchesSelector
+					|| proto.oMatchesSelector;
+
+if (nativeMatch) {
+	
+	module.exports = function(selector, el) {
+		return nativeMatch.call(el, selector);
+	}
+
+} else {
+
+	console.warn("Warning: using slow matchesSelector()");
+	
+	var indexOf = Array.prototype.indexOf;
+	module.exports = function(selector, el) {
+		return indexOf.call(document.querySelectorAll(selector), el) >= 0;
+	}
+
+}
+
+},{}],"/Users/jason/dev/projects/domutil/node_modules/dom-matchesselector/index.js":[function(require,module,exports){
+var proto = window.Element.prototype;
+var nativeMatch = proto.webkitMatchesSelector
+					|| proto.mozMatchesSelector
+					|| proto.msMatchesSelector
+					|| proto.oMatchesSelector;
+
+if (nativeMatch) {
+	
+	module.exports = function(selector, el) {
+		return nativeMatch.call(el, selector);
+	}
+
+} else {
+
+	console.warn("Warning: using slow matchesSelector()");
+	
+	var indexOf = Array.prototype.indexOf;
+	module.exports = function(selector, el) {
+		return indexOf.call(document.querySelectorAll(selector), el) >= 0;
+	}
+
+}
+
+},{}],"/Users/jason/dev/projects/domutil/node_modules/tape/index.js":[function(require,module,exports){
 (function (process){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');

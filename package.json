@@ -19,5 +19,9 @@
   "devDependencies": {
     "uglify-js": "~2.4.14",
     "tape": "~2.13.3"
+  },
+  "dependencies": {
+    "dom-bind": "^1.0.0",
+    "dom-matchesselector": "^1.0.0"
   }
 }
